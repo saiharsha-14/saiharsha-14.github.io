@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saiharsha Gurijala - Data Engineer | Portfolio</title>
     
-    <meta name="title" content="Saiharsha Gurijala - Software Engineer | Portfolio">
-    <meta name="description" content="Software Engineer based in Bangalore, India. Specialized in Python, Django, FastAPI, cloud infrastructure, and data platforms.">
+    <meta name="title" content="Saiharsha Gurijala - Data Engineer | Portfolio">
+    <meta name="description" content="Data Engineer based in Bangalore, India. Specialized in Python, SQL, Apache Spark, cloud infrastructure, and data platforms.">
     <meta name="author" content="Saiharsha Gurijala">
     
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -390,11 +390,95 @@
         .reveal-delay-2 { transition-delay: 0.2s; }
         .reveal-delay-3 { transition-delay: 0.3s; }
 
-        /* --- About Section --- */
+        /* --- About Section & Tech Globe Visual --- */
         .about-content {
             display: grid;
             grid-template-columns: 1fr;
             gap: 4rem;
+        }
+
+        .about-grid-interactive {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (min-width: 992px) {
+            .about-grid-interactive { grid-template-columns: 1.1fr 0.9fr; }
+        }
+
+        .about-visual-wrapper {
+            position: relative;
+            height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tech-globe {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(0, 242, 254, 0.15), rgba(7, 10, 19, 0.8));
+            border: 2px solid rgba(0, 242, 254, 0.4);
+            box-shadow: 0 0 40px rgba(0, 242, 254, 0.2), inset 0 0 40px rgba(0, 242, 254, 0.2);
+            position: relative;
+            animation: pulseGlobe 4s infinite alternate;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tech-globe i {
+            font-size: 4rem;
+            color: var(--primary-glow);
+            opacity: 0.8;
+            filter: drop-shadow(0 0 10px var(--primary-glow));
+        }
+
+        @keyframes pulseGlobe {
+            0% { transform: scale(1); box-shadow: 0 0 20px rgba(0, 242, 254, 0.2), inset 0 0 20px rgba(0, 242, 254, 0.2); }
+            100% { transform: scale(1.05); box-shadow: 0 0 60px rgba(0, 242, 254, 0.4), inset 0 0 60px rgba(0, 242, 254, 0.4); }
+        }
+
+        .orbit {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 320px; height: 320px;
+            transform: translate(-50%, -50%);
+            border: 1px dashed rgba(79, 172, 254, 0.3);
+            border-radius: 50%;
+            animation: rotateOrbit 25s linear infinite;
+        }
+
+        .orbit-icon {
+            position: absolute;
+            width: 50px; height: 50px;
+            background: var(--bg-card);
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            border: 1px solid var(--primary-glow);
+            color: var(--text-main);
+            font-size: 1.4rem;
+            box-shadow: 0 0 15px rgba(0,242,254,0.3);
+            backdrop-filter: blur(5px);
+            animation: counterRotateOrbit 25s linear infinite;
+        }
+
+        .oi-1 { top: -25px; left: 50%; margin-left: -25px; color: #3776AB; } /* Python */
+        .oi-2 { bottom: -25px; left: 50%; margin-left: -25px; color: #FF9900; } /* AWS */
+        .oi-3 { left: -25px; top: 50%; margin-top: -25px; color: #E34F26; } /* DB */
+        .oi-4 { right: -25px; top: 50%; margin-top: -25px; color: #00f2fe; } /* Tech */
+
+        @keyframes rotateOrbit {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @keyframes counterRotateOrbit {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-360deg); }
         }
 
         .info-grid {
@@ -406,7 +490,7 @@
         }
 
         @media (min-width: 576px) {
-            .info-grid { grid-template-columns: repeat(3, 1fr); }
+            .info-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         .info-item {
@@ -439,62 +523,103 @@
         @media (min-width: 768px) {
             .skills-matrix-grid { grid-template-columns: repeat(2, 1fr); }
         }
+        
+        @media (min-width: 1024px) {
+            .skills-matrix-grid { grid-template-columns: repeat(3, 1fr); }
+        }
 
         .glow-card {
-            background-color: rgba(255, 255, 255, 0.02);
+            background-color: rgba(17, 24, 39, 0.4);
             border-radius: 12px;
             position: relative;
             cursor: pointer;
             border: 1px solid var(--border-color);
             overflow: hidden;
-            min-height: 120px;
+            min-height: 140px;
+            transform-style: preserve-3d;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
         }
 
-        .glow-card::before {
-            content: "";
+        .glow-card::after {
+            content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(
-                600px circle at var(--mouse-x, 0) var(--mouse-y, 0),
-                rgba(0, 242, 254, 0.15),
-                transparent 40%
-            );
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(transparent, var(--primary-glow), transparent 30%);
+            animation: rotateGlow 4s linear infinite;
             opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 1;
+            transition: opacity 0.4s;
+            z-index: 0;
         }
 
-        .glow-card:hover::before { opacity: 1; }
+        @keyframes rotateGlow {
+            100% { transform: rotate(360deg); }
+        }
+
+        .glow-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            border-color: transparent;
+            box-shadow: 0 15px 35px -10px rgba(0, 242, 254, 0.4);
+        }
+
+        .glow-card:hover::after { opacity: 1; }
+
+        .glow-card-inner {
+            position: absolute;
+            inset: 2px;
+            background: var(--bg-color);
+            border-radius: 10px;
+            z-index: 1;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transform-style: preserve-3d;
+            transition: background 0.4s;
+        }
+        
+        .glow-card:hover .glow-card-inner {
+            background: rgba(7, 10, 19, 0.95);
+        }
 
         .glow-card-content {
             position: relative;
             z-index: 2;
-            padding: 2rem 1.5rem;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            transform: translateZ(0px);
+            transition: transform 0.4s ease;
+        }
+
+        .glow-card:hover .glow-card-content {
+            transform: translateZ(40px);
         }
 
         .glow-card-content h5 {
             color: var(--text-main);
             font-size: 0.95rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             margin-bottom: 0.75rem;
             font-family: 'JetBrains Mono', monospace;
-            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s ease;
         }
 
         .glow-card:hover .glow-card-content h5 {
-            transform: translateX(8px);
             color: var(--primary-glow);
         }
 
         .glow-card-content h5 i {
             color: var(--primary-glow);
             margin-right: 0.75rem;
-            font-size: 1.1rem;
+            font-size: 1.4rem;
+            display: inline-block;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.4s, text-shadow 0.4s;
+        }
+
+        .glow-card:hover .glow-card-content h5 i {
+            transform: translateY(-5px) scale(1.2);
+            color: #fff;
+            text-shadow: 0 0 15px var(--primary-glow);
         }
 
         .glow-card-content p {
@@ -502,10 +627,8 @@
             color: var(--text-muted);
             line-height: 1.6;
         }
-        
-        .full-width { grid-column: 1 / -1; }
 
-        /* --- Experience --- */
+        /* --- Standard Experience Blocks --- */
         .experience-timeline {
             display: flex;
             flex-direction: column;
@@ -521,7 +644,7 @@
             padding: 2.5rem;
             border-radius: 14px;
             position: relative;
-            transition: transform 0.3s, border-color 0.3s;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
         }
 
         .experience-block::before {
@@ -535,11 +658,13 @@
             border: 2px solid var(--primary-glow);
             border-radius: 50%;
             transition: background 0.3s, box-shadow 0.3s;
+            z-index: 2;
         }
 
         .experience-block:hover {
             transform: translateX(10px);
-            border-color: rgba(0, 242, 254, 0.2);
+            border-color: rgba(0, 242, 254, 0.3);
+            box-shadow: 0 10px 30px -10px rgba(0, 242, 254, 0.15);
         }
 
         .experience-block:hover::before {
@@ -579,7 +704,6 @@
 
         .experience-details {
             list-style: none;
-            margin-bottom: 1.5rem;
         }
 
         .experience-details li {
@@ -600,26 +724,6 @@
             color: var(--primary-glow);
         }
 
-        .experience-tech-line {
-            margin-top: 1.5rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .experience-tech-line strong {
-            color: var(--text-main);
-            font-weight: 600;
-            margin-right: 0.5rem;
-        }
-
-        .experience-tech-list {
-            color: #ffb33f;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 500;
-        }
-
         /* --- Projects --- */
         .projects-grid {
             display: grid;
@@ -629,11 +733,6 @@
 
         @media (min-width: 768px) {
             .projects-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        /* Added 1024px breakpoint to display 3 projects in one line */
-        @media (min-width: 1024px) {
-            .projects-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
         .project-card {
@@ -691,7 +790,6 @@
             flex-grow: 1;
         }
 
-        /* Project GitHub Link */
         .project-links {
             margin-top: 1rem;
             padding-top: 1rem;
@@ -886,7 +984,7 @@
                 </h1>
                 <h2 class="hero-subtitle" id="typewriter"></h2>
                 <p class="hero-description reveal reveal-delay-1">
-                    Data Engineer with 2+ years of experience architecting and automating scalable ELT/ETL pipelines processing highvolume event data. M.S. in Data Analytics with expertise in distributed compute (Apache Spark), cloud data warehousing (AWS Redshift, Snowflake), and orchestration (Apache Airflow). Proven track record of reducing pipeline latency, optimizing cloud compute costs, and implementing robust data quality checks for production-grade logistics systems.
+                    Data Engineer with 2.5+ years of experience architecting and automating scalable ELT/ETL pipelines processing high-volume event data. M.S. in Data Analytics with expertise in distributed compute (Apache Spark), cloud data warehousing (AWS Redshift, Snowflake), and orchestration (Apache Airflow). Proven track record of reducing pipeline latency, optimizing cloud compute costs, and implementing robust data quality checks for production-grade logistics systems.
                 </p>
                 <div class="hero-buttons reveal reveal-delay-2">
                     <a href="#portfolio" class="btn btn-primary">View Portfolio</a>
@@ -910,20 +1008,34 @@
         <div class="container">
             <h2 class="section-title reveal">Profile Overview</h2>
             <div class="about-content">
-                <div class="about-text reveal">
-                    <p>
-                     Data Engineer with 2+ years of experience architecting and automating scalable ELT/ETL pipelines processing highvolume event data. M.S. in Data Analytics with expertise in distributed compute (Apache Spark), cloud data warehousing (AWS Redshift, Snowflake), and orchestration (Apache Airflow). Proven track record of reducing pipeline latency, optimizing cloud compute costs, and implementing robust data quality checks for production-grade logistics systems.
-                    </p>
+                
+                <!-- INTERACTIVE ABOUT GRID -->
+                <div class="about-grid-interactive reveal">
+                    <div class="about-text-content">
+                        <p style="margin-bottom: 1.5rem;">
+                         Data Engineer with 2.5+ years of experience architecting and automating scalable ELT/ETL pipelines processing high-volume event data. M.S. in Data Analytics with expertise in distributed compute (Apache Spark), cloud data warehousing (AWS Redshift, Snowflake), and orchestration (Apache Airflow). Proven track record of reducing pipeline latency, optimizing cloud compute costs, and implementing robust data quality checks for production-grade logistics systems.
+                        </p>
+                        
+                        <div class="info-grid reveal reveal-delay-1">
+                            <div class="info-item">
+                                <strong><i class="fa-solid fa-location-dot" style="color:var(--primary-glow); margin-right:0.5rem;"></i>Location:</strong> Bangalore, India
+                            </div>
+                            <div class="info-item">
+                                <strong><i class="fa-solid fa-envelope" style="color:var(--primary-glow); margin-right:0.5rem;"></i>Email:</strong> harshagurijala10@gmail.com
+                            </div>
+                        </div>
+                    </div>
                     
-                    <div class="info-grid reveal reveal-delay-1">
-                        <div class="info-item">
-                            <strong><i class="fa-solid fa-location-dot" style="color:var(--primary-glow); margin-right:0.5rem;"></i>Location:</strong> Bangalore, India
-                        </div>
-                        <div class="info-item">
-                            <strong><i class="fa-solid fa-envelope" style="color:var(--primary-glow); margin-right:0.5rem;"></i>Email:</strong> harshagurijala10@gmail.com
-                        </div>
-                        <div class="info-item">
-                            <strong><i class="fa-solid fa-phone" style="color:var(--primary-glow); margin-right:0.5rem;"></i>Phone:</strong> +91 9381081681
+                    <!-- Tech Globe Animation -->
+                    <div class="about-visual-wrapper tilt-card" data-tilt>
+                        <div class="tech-globe">
+                            <i class="fa-solid fa-database"></i>
+                            <div class="orbit">
+                                <div class="orbit-icon oi-1"><i class="fa-brands fa-python"></i></div>
+                                <div class="orbit-icon oi-2"><i class="fa-brands fa-aws"></i></div>
+                                <div class="orbit-icon oi-3"><i class="fa-solid fa-server"></i></div>
+                                <div class="orbit-icon oi-4"><i class="fa-solid fa-code-branch"></i></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -932,52 +1044,57 @@
                     <h2 class="section-title reveal">Core Capabilities</h2>
                     <div class="skills-matrix-grid" id="spotlight-grid">
                         
-                        <div class="glow-card reveal">
-                            <div class="glow-card-content">
-                                <h5><i class="fa-solid fa-code"></i> 1. Programming & Scripting</h5>
-                                <p>Python, Ruby, Bash/Shell Scripting, FastAPI, Ruby on Rails</p>
+                        <div class="glow-card reveal tilt-card">
+                            <div class="glow-card-inner">
+                                <div class="glow-card-content">
+                                    <h5><i class="fa-solid fa-microchip"></i> Data Processing & Compute</h5>
+                                    <p>Python, SQL (Advanced Window Functions, CTEs), PySpark, Apache Spark.</p>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="glow-card reveal reveal-delay-1">
-                            <div class="glow-card-content">
-                                <h5><i class="fa-solid fa-database"></i> 2. Databases & Warehouses</h5>
-                                <p>MySQL, PostgreSQL, MongoDB, AWS Redshift, Snowflake</p>
+                        <div class="glow-card reveal reveal-delay-1 tilt-card">
+                            <div class="glow-card-inner">
+                                <div class="glow-card-content">
+                                    <h5><i class="fa-solid fa-cloud"></i> Cloud & Warehousing</h5>
+                                    <p>AWS (S3, Redshift, EC2, Lambda, Event bridge, VPC), Snowflake, Dimensional Modeling, Slowly Changing Dimensions (SCD).</p>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="glow-card reveal">
-                            <div class="glow-card-content">
-                                <h5><i class="fa-solid fa-cloud"></i> 3. Cloud & Infrastructure</h5>
-                                <p>AWS (S3, Redshift, EC2, Lambda, Event bridge, VPC), Snowflake, Dimensional Modeling, SCD. </p>
+                        <div class="glow-card reveal tilt-card">
+                            <div class="glow-card-inner">
+                                <div class="glow-card-content">
+                                    <h5><i class="fa-solid fa-diagram-project"></i> Orchestration & Trans...</h5>
+                                    <p>Apache Airflow, dbt (data build tool), ETL/ELT Frameworks.</p>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="glow-card reveal reveal-delay-1">
-                            <div class="glow-card-content">
-                                <h5><i class="fa-solid fa-gears"></i> 4. DevOps & Automation</h5>
-                                <p>Terraform, Jenkins, Docker, Kubernetes, Rolling Deployments</p>
+                        <div class="glow-card reveal reveal-delay-1 tilt-card">
+                            <div class="glow-card-inner">
+                                <div class="glow-card-content">
+                                    <h5><i class="fa-solid fa-stream"></i> Streaming & Ingestion</h5>
+                                    <p>Apache Kafka, API Integrations, Change Data Capture (CDC).</p>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="glow-card reveal">
-                            <div class="glow-card-content">
-                                <h5><i class="fa-solid fa-network-wired"></i> 5. Data Engineering</h5>
-                                <p>Distributed Systems, Spark ETL, Log Processing, Event Data Processing</p>
+                        <div class="glow-card reveal tilt-card">
+                            <div class="glow-card-inner">
+                                <div class="glow-card-content">
+                                    <h5><i class="fa-solid fa-gears"></i> DevOps & Automation</h5>
+                                    <p>Docker, Kubernetes, Terraform, Git, CI/CD (Jenkins).</p>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="glow-card reveal reveal-delay-1">
-                            <div class="glow-card-content">
-                                <h5><i class="fa-solid fa-chart-line"></i> 6. Streaming & Ingestion</h5>
-                                <p>Apache Kafka, API Integrations, Change Data Capture (CDC)</p>
-                            </div>
-                        </div>
-
-                        <div class="glow-card full-width reveal">
-                            <div class="glow-card-content">
-                                <h5><i class="fa-solid fa-shield-halved"></i> 7. Production Support & Monitoring</h5>
-                                <p>Incident Response, Root Cause Analysis, SLA/SLO Management, Capacity Planning, Performance Optimisation</p>
+                        <div class="glow-card reveal reveal-delay-1 tilt-card">
+                            <div class="glow-card-inner">
+                                <div class="glow-card-content">
+                                    <h5><i class="fa-solid fa-shield-halved"></i> Production Support</h5>
+                                    <p>Incident Response, Root Cause Analysis, SLA/SLO Management, Performance Optimisation.</p>
+                                </div>
                             </div>
                         </div>
 
@@ -992,6 +1109,7 @@
             <h2 class="section-title reveal">Professional Experience</h2>
             <div class="experience-timeline">
                 
+                <!-- STANDARD EXPERIENCE BLOCKS -->
                 <div class="experience-block reveal">
                     <div class="experience-header">
                         <h3>Trust & Safety Associate</h3>
@@ -1003,9 +1121,6 @@
                         <li>Reviewed and actioned fake/fraudulent account activity using internal data and investigation tools.</li>
                         <li>Collaborated with cross-functional global teams in an agile environment to meet SLA targets & improve process accuracy.</li>
                     </ul>
-                    <div class="experience-tech-line">
-                        <strong>Technologies:</strong> <span class="experience-tech-list">Data Analytics, Data Governance, Automation</span>
-                    </div>
                 </div>
 
                 <div class="experience-block reveal">
@@ -1015,16 +1130,10 @@
                     </div>
                     <div class="experience-company">VTRANS India Ltd — Bangalore, India</div>
                     <ul class="experience-details">
-                        <li>Designed and developed backend systems and ETL pipelines using Python in Linux environments.</li>
-                        <li>Built scalable, modular services for processing high-volume logistics data.</li>
-                        <li>Implemented multithreaded workflows improving processing efficiency.</li>
-                        <li>Optimised SQL queries, improving system performance by 20%.</li>
-                        <li>Integrated REST APIs for seamless communication between services.</li>
-                        <li>Diagnosed and resolved production issues, ensuring system reliability.</li>
+                        <li>Engineered scalable backend data ingestion systems using Python, optimizing the extraction of 50+ GB of daily distributed logistics data and reducing processing time by 40% while minimizing AWS compute costs.</li>
+                        <li>Orchestrated complex data dependencies by automating 15+ manual data workflows, achieving a 99.9% pipeline SLA and decreasing data delivery turnaround time for business stakeholders.</li>
+                        <li>Designed modular, fault-tolerant ELT architectures for log and event data, implementing robust error handling and monitoring to accelerate incident resolution times.</li>
                     </ul>
-                    <div class="experience-tech-line">
-                        <strong>Technologies:</strong> <span class="experience-tech-list">Python, SQL, Multithreading, Linux Environments, System Design</span>
-                    </div>
                 </div>
 
                 <div class="experience-block reveal">
@@ -1034,15 +1143,10 @@
                     </div>
                     <div class="experience-company">Transtech Logistics Pvt Ltd — Bangalore, India</div>
                     <ul class="experience-details">
-                        <li>Developed backend web applications using Ruby on Rails.</li>
-                        <li>Designed and implemented RESTful APIs for scalable service architecture.</li>
-                        <li>Improved API response times by 25% through performance tuning.</li>
-                        <li>Worked across full development lifecycle: development, testing, deployment, debugging.</li>
-                        <li>Implemented unit and integration testing to ensure software quality.</li>
+                        <li>Optimized complex MySQL analytical queries and implemented caching strategies, improving REST API response times by 25% for downstream reporting dashboards.</li>
+                        <li>Developed and maintained Python-based ETL pipelines to process raw logistics data, ensuring high data quality and freshness for downstream analytics teams.</li>
+                        <li>Collaborated across the full development lifecycle—including design, testing, CI/CD deployment, and infrastructure monitoring—to ensure highly available logistics services.</li>
                     </ul>
-                    <div class="experience-tech-line">
-                        <strong>Technologies:</strong> <span class="experience-tech-list">Ruby on Rails, REST APIs, Ruby, Performance Tuning, Unit Testing</span>
-                    </div>
                 </div>
 
                 <div class="experience-block reveal">
@@ -1052,12 +1156,9 @@
                     </div>
                     <div class="experience-company">Transtech Logistics Pvt Ltd — Bangalore, India</div>
                     <ul class="experience-details">
-                        <li>Developed Python scripts to debug sensor integration issues.</li>
-                        <li>Supported engineering and QA teams in issue resolution and testing.</li>
+                        <li>Built core backend features & REST APIs using Python and MySQL, directly supporting high-traffic logistics applications.</li>
+                        <li>Assisted in the deployment & debugging of production systems under senior engineering guidance.</li>
                     </ul>
-                    <div class="experience-tech-line">
-                        <strong>Technologies:</strong> <span class="experience-tech-list">Python, Debugging Scripts, Sensor Integration, QA Operations</span>
-                    </div>
                 </div>
 
             </div>
@@ -1074,9 +1175,9 @@
                         <div class="project-header">
                             <i class="fa-solid fa-chart-line"></i>
                             <h3>Financial Forecasting Framework</h3>
-                            <span class="project-tag">Python // FinBERT // Transformers</span>
+                            <span class="project-tag">Sep 2024 - Jan 2025</span>
                         </div>
-                        <p>Built a real-time financial forecasting web app using Temporal Fusion Transformers (TFT) and Python. Integrated FinBERT for sentiment analysis of Reddit and financial news, improving prediction accuracy by 10%. Simulated trading strategies, achieving a 12% return in backtesting scenarios.</p>
+                        <p>Built a real-time financial forecasting web application using Temporal Fusion Transformers (TFT) and Python. Integrated FinBERT for sentiment analysis of Reddit & financial news data, improving prediction accuracy by 15%. Engineered an automated data ingestion pipeline to extract and preprocess historical stock market data and Reddit API streams, ensuring high data quality for downstream model training.</p>
                     </div>
                     <div class="project-links">
                         <a href="https://github.com/saiharsha-14/MScResearchProject" target="_blank" class="btn-github-project">
@@ -1088,30 +1189,14 @@
                 <div class="project-card reveal reveal-delay-1 tilt-card" data-tilt>
                     <div>
                         <div class="project-header">
-                            <i class="fa-solid fa-microchip"></i>
-                            <h3>Cloud-Based Microservices API System</h3>
-                            <span class="project-tag">Python // AWS EC2 // S3</span>
+                            <i class="fa-solid fa-database"></i>
+                            <h3>End-to-End E-Commerce Data Platform</h3>
+                            <span class="project-tag">Jun 2026</span>
                         </div>
-                        <p>Developed modular backend services using Python and REST APIs simulating a microservice architecture. Deployed on AWS (EC2, S3) with support for concurrent request handling. Implemented logging and error handling to improve system reliability and debugging.</p>
+                        <p>Engineered an automated batch ETL pipeline deployed entirely via Infrastructure as Code (Terraform) on AWS, extracting daily transaction data from distributed PostgreSQL databases. Modeled a scalable cloud data warehouse in Snowflake using a Star Schema to support business intelligence reporting. Implemented robust data contracts and quality checks using Great Expectations within Airflow DAGs, automatically alerting the engineering team via Slack for schema drifts.</p>
                     </div>
                     <div class="project-links">
                         <a href="https://github.com/saiharsha-14" target="_blank" class="btn-github-project">
-                            <i class="fa-brands fa-github"></i> View on GitHub
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card reveal reveal-delay-2 tilt-card" data-tilt>
-                    <div>
-                        <div class="project-header">
-                            <i class="fa-solid fa-truck-fast"></i>
-                            <h3>LogiTrack Analytics Platform</h3>
-                            <span class="project-tag">Ruby on Rails // PostgreSQL </span>
-                        </div>
-                        <p>A comprehensive logistics operations platform simulating real-world shipment tracking, warehouse capacity monitoring, route intelligence, and delivery risk scoring. Features robust role-based access control (Admin, Manager, Viewer) via BCrypt and an enterprise-style analytics dashboard.</p>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/saiharsha-14/logitrack-logistics-analytics" target="_blank" class="btn-github-project">
                             <i class="fa-brands fa-github"></i> View on GitHub
                         </a>
                     </div>
@@ -1171,7 +1256,7 @@
                     <h3 style="color: var(--text-main); font-size: 1.5rem; margin-bottom: 1.5rem;">Reach Out</h3>
                     <div style="display: flex; flex-direction: column; gap: 1.5rem;">
                         <p><a href="mailto:harshagurijala10@gmail.com" style="color: inherit; text-decoration: none;"><i class="fa-solid fa-envelope" style="color:var(--primary-glow); margin-right:1rem;"></i> harshagurijala10@gmail.com</a></p>
-                        <p><i class="fa-solid fa-phone" style="color:var(--primary-glow); margin-right:1rem;"></i> +91 9381081681</p>
+                        <p><i class="fa-solid fa-phone" style="color:var(--primary-glow); margin-right:1rem;"></i> 9381081681</p>
                         <p><i class="fa-solid fa-location-dot" style="color:var(--primary-glow); margin-right:1rem;"></i> Bangalore, India</p>
                     </div>
                     
@@ -1210,7 +1295,6 @@
             }, { duration: 500, fill: "forwards" });
         });
 
-        // Hover effect for clickable elements
         const clickables = document.querySelectorAll('a, button, .glow-card, .contact-info p');
         clickables.forEach(el => {
             el.addEventListener('mouseenter', () => {
@@ -1227,7 +1311,7 @@
 
         // --- 2. Dynamic Typing Effect ---
         const typeWriterElement = document.getElementById('typewriter');
-        const text = "Software Engineer";
+        const text = "Data Engineer";
         let index = 0;
 
         function type() {
@@ -1338,17 +1422,6 @@
             const y = e.clientY / window.innerHeight;
             mesh1.style.transform = `translate(${x * -30}px, ${y * -30}px)`;
             mesh2.style.transform = `translate(${x * 30}px, ${y * 30}px)`;
-        });
-
-        const glowCards = document.querySelectorAll('.glow-card');
-        glowCards.forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
-            });
         });
     </script>
 </body>
