@@ -1,39 +1,56 @@
-# Saiharsha Gurijala - Personal Portfolio
+# Saiharsha Gurijala - Data Engineer Portfolio 🚀
 
-> A sleek, interactive, and high-performance personal portfolio website built to showcase my experience, technical skills, and projects as a Software Engineer. 
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](#)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](#)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](#)
+[![Data Engineering](https://img.shields.io/badge/Data_Engineering-00f2fe?style=for-the-badge&logo=apachespark&logoColor=black)](#)
 
-🌍 **Live Demo:** [Insert Your Netlify Link Here]
+A responsive, interactive, and visually engaging personal portfolio website built to showcase my experience, projects, and skills as a Data Engineer. 
 
-## 🚀 Overview
+🔗 **[View Live Demo](https://harshagurijala.netlify.app/)** 
 
-This portfolio is designed with a modern, dark-themed UI featuring glassmorphism elements, neon accents, and smooth animations. It is built entirely without heavy frontend frameworks to ensure maximum performance, relying strictly on **Vanilla HTML, CSS, and JavaScript**.
+---
 
-## ✨ Key Features
+## ✨ Features
 
-*   **Custom UI Interactions:** Replaces the default cursor with a custom glowing dot and responsive trailing outline.
-*   **3D Tilt Cards:** Project and profile cards feature a vanilla JavaScript 3D perspective tilt effect on hover.
-*   **Scroll Reveal Animations:** Sections dynamically fade and slide into view as the user scrolls down the page using the `IntersectionObserver` API.
-*   **Dynamic Particle Background:** A lightweight, custom CSS/JS particle system floats in the background with slight mouse-tracking parallax.
-*   **Fully Responsive:** Fluid grid layouts ensure the site looks perfect on mobile phones, tablets, and wide desktop monitors.
-*   **Dynamic Typing Effect:** Hero section features a self-typing subtitle animation.
+The portfolio is built from scratch using pure HTML, CSS, and Vanilla JavaScript, ensuring high performance and a custom feel without the bloat of heavy frameworks. 
 
-## 🛠️ Tech Stack
+*   **Modern Glassmorphism UI:** Frosted glass effects and sleek dark-mode aesthetics.
+*   **Interactive Custom Cursor:** A custom-built, physics-based cursor that reacts to clickable elements.
+*   **3D Tilt Cards:** Interactive project and experience cards using vanilla JavaScript mathematics (no external libraries).
+*   **Dynamic Tech Globe:** A CSS-animated rotating planetary system showcasing core technical skills.
+*   **Scroll Reveal Animations:** Intersection Observer API implementation for smooth, fade-in animations as the user scrolls.
+*   **Particle Background:** A lightweight, custom CSS/JS particle engine for a dynamic, deep-space ambiance.
+*   **Responsive Design:** Fully optimized for mobile, tablet, and desktop viewing.
 
-*   **HTML5** - Semantic structuring
-*   **CSS3** - Custom properties (variables), Flexbox, CSS Grid, Glassmorphism, Keyframe animations
-*   **Vanilla JavaScript (ES6)** - DOM manipulation, event listeners, Intersection Observer API
-*   **FontAwesome 6** - Vector icons
+---
 
-## 💻 Featured Projects Included
+## 🛠️ Built With
 
-1.  **LogiTrack Analytics Platform:** A logistics operations platform simulating shipment tracking, warehouse capacity monitoring, and route intelligence.
-2.  **Financial Forecasting Framework:** A real-time web app using Temporal Fusion Transformers (TFT) and FinBERT for sentiment analysis.
-3.  **Cloud-Based Microservices API System:** Modular backend services deployed on AWS (EC2, S3) with concurrent request handling.
+*   **HTML5:** Semantic structuring.
+*   **CSS3:** Custom variables, grid/flexbox layouts, keyframe animations, and media queries.
+*   **Vanilla JavaScript (ES6+):** DOM manipulation, Intersection Observers, and event listeners.
+*   **Font Awesome:** For scalable vector icons.
+*   **Google Fonts:** Plus Jakarta Sans (Typography) & JetBrains Mono (Tech tags/dates).
 
-## ⚙️ Local Setup
+---
 
-Since this project is completely static, no package managers or build tools are required.
+## 👨‍💻 About the Author
 
-1. Clone the repository:
-   ```bash
-   git clone [https://github.com/saiharsha-14/your-repo-name.git](https://github.com/saiharsha-14/your-repo-name.git)
+I am **Saiharsha (Harsha) Gurijala**, a Data Engineer with 2.5+ years of experience architecting and automating scalable ELT/ETL pipelines processing high-volume event data. 
+
+**Core Expertise:**
+*   **Data Processing:** Python, SQL, PySpark, Apache Spark
+*   **Cloud & DWH:** AWS (S3, Redshift, EC2, Lambda), Snowflake
+*   **Orchestration & DevOps:** Apache Airflow, dbt, Docker, Terraform, CI/CD
+
+---
+
+📫 Let's Connect
+Email: harshagurijala10@gmail.com
+
+LinkedIn: Saiharsha Gurijala
+
+GitHub: saiharsha-14
+
+Designed & Built with ❤️ by Harsha
