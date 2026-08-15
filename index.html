@@ -6,7 +6,7 @@
     <title>Saiharsha Gurijala - Data Engineer | Portfolio</title>
     
     <meta name="title" content="Saiharsha Gurijala - Data Engineer | Portfolio">
-    <meta name="description" content="Data Engineer based in Bangalore, India. Specialized in Python, SQL, Apache Spark, cloud infrastructure, and data platforms. Building scalable ETL/ELT systems.">
+    <meta name="description" content="Data Engineer based in Bangalore, India. Specialized in Python, SQL, PySpark, AWS, Snowflake, and dbt. Building scalable ETL/ELT systems.">
     <meta name="author" content="Saiharsha Gurijala">
     <meta name="theme-color" content="#070A13">
     
@@ -886,8 +886,8 @@
         }
         .oi-1 { top: -24px; left: 50%; margin-left: -24px; color: #3776AB; }
         .oi-2 { bottom: -24px; left: 50%; margin-left: -24px; color: #FF9900; }
-        .oi-3 { left: -24px; top: 50%; margin-top: -24px; color: #29B5E8; }
-        .oi-4 { right: -24px; top: 50%; margin-top: -24px; color: #E24329; }
+        .oi-3 { left: -24px; top: 50%; margin-top: -24px; color: #29B5E8; } /* Snowflake color */
+        .oi-4 { right: -24px; top: 50%; margin-top: -24px; color: #FF694B; } /* dbt color styling */
         @keyframes rotateOrbit {
             0% { transform: translate(-50%, -50%) rotate(0deg); }
             100% { transform: translate(-50%, -50%) rotate(360deg); }
@@ -920,7 +920,9 @@
             position: relative;
             border: 1px solid var(--border-color);
             overflow: hidden;
-            min-height: 175px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
             transform-style: preserve-3d;
             transition: transform 0.45s var(--ease-spring), box-shadow 0.4s, border-color 0.4s;
         }
@@ -940,8 +942,9 @@
         }
         .glow-card:hover::before { opacity: 1; }
         .glow-card-inner {
-            position: absolute;
-            inset: 1px;
+            position: relative;
+            margin: 1px;
+            flex: 1;
             background: rgba(8, 12, 22, 0.92);
             border-radius: 17px;
             z-index: 1;
@@ -1211,6 +1214,10 @@
             border-color: rgba(0, 242, 254, 0.2);
             color: #b8c5d4;
         }
+        .tech-tags span.aws-tag { color: #FF9900; border-color: rgba(255,153,0,0.3); background: rgba(255,153,0,0.05); }
+        .tech-tags span.dbt-tag { color: #FF694B; border-color: rgba(255,105,75,0.3); background: rgba(255,105,75,0.05); }
+        .tech-tags span.snow-tag { color: #29B5E8; border-color: rgba(41,181,232,0.3); background: rgba(41,181,232,0.05); }
+
         .project-links {
             margin-top: auto;
             padding-top: 1.3rem;
@@ -1422,7 +1429,7 @@
             45% { transform: scale(1.2); }
         }
 
-        /* ========== PARTICLES ========== */
+        /* ========== BACKGROUND ICONS ========== */
         #particle-host {
             position: absolute; 
             top: 0; left: 0; 
@@ -1431,20 +1438,19 @@
             overflow: hidden; 
             z-index: 0;
         }
-        @keyframes floatParticle {
-            0% { transform: translateY(100vh) scale(1); opacity: 0; }
-            8% { opacity: 0.45; }
-            92% { opacity: 0.45; }
-            100% { transform: translateY(-12vh) scale(1.6); opacity: 0; }
+        @keyframes floatIcon {
+            0% { transform: translateY(100vh) rotate(-15deg) scale(0.8); opacity: 0; }
+            10% { opacity: 0.12; }
+            90% { opacity: 0.12; }
+            100% { transform: translateY(-20vh) rotate(15deg) scale(1.1); opacity: 0; }
         }
-        .particle {
+        .bg-icon {
             position: absolute;
             pointer-events: none;
-            background: var(--primary-glow);
-            border-radius: 50%;
-            box-shadow: 0 0 12px var(--primary-glow);
-            animation: floatParticle linear infinite;
+            color: var(--primary-glow);
+            animation: floatIcon linear infinite;
             opacity: 0;
+            filter: drop-shadow(0 0 6px rgba(0, 242, 254, 0.25));
         }
 
         /* ========== BACK TO TOP ========== */
@@ -1531,7 +1537,7 @@
             </ul>
             <div class="nav-actions">
                 <a href="mailto:harshagurijala10@gmail.com" class="nav-resume-btn">
-                    <i class="fa-regular fa-paper-plane"></i> Contact
+                    Mail Me <i class="fa-regular fa-paper-plane"></i> 
                 </a>
                 <button class="hamburger" id="hamburger" aria-label="Menu">
                     <span></span><span></span><span></span>
@@ -1572,7 +1578,7 @@
                 </div>
                 
                 <p class="hero-description">
-                    Specializing in architecting scalable ETL/ELT pipelines, distributed cloud systems, and data warehousing. I transform raw data into reliable, high-performance infrastructure.
+                    Data Engineer with over 2 years of experience specializing in cloud data architectures, backend development, and automated ETL/ELT pipeline design using PySpark, AWS, Snowflake & dbt.
                 </p>
 
                 <div class="hero-stats">
@@ -1624,10 +1630,10 @@
             <div class="about-grid-interactive reveal">
                 <div class="about-text">
                     <p>
-                        Data Engineer with <strong>2+ years</strong> of experience architecting and automating scalable ELT/ETL pipelines processing high-volume event data. M.S. in Data Analytics with expertise in distributed compute (Apache Spark), cloud data warehousing (AWS Redshift, Snowflake), and orchestration (Apache Airflow).
+                        Data Engineer with <strong>2+ years</strong> of experience architecting and automating scalable ELT/ETL pipelines. Proven ability to optimize data ingestion systems and implement dimensional models (SCD Type 2) while automating data quality governance. 
                     </p>
                     <p>
-                        Proven track record of reducing pipeline latency, optimizing cloud compute costs, and implementing robust data quality checks for production-grade logistics systems.
+                        I expertly integrate backend software engineering practices, such as version control, CI/CD, and modular code, with cloud-native architectures to develop scalable, fault-tolerant data platforms. M.S. in Data Analytics graduate.
                     </p>
                     
                     <div class="info-grid reveal reveal-delay-1">
@@ -1652,14 +1658,14 @@
                     <div class="tech-globe">
                         <i class="fa-solid fa-database"></i>
                         <div class="orbit">
-                            <div class="orbit-icon oi-1"><i class="fa-brands fa-python"></i></div>
-                            <div class="orbit-icon oi-2"><i class="fa-brands fa-aws"></i></div>
-                            <div class="orbit-icon oi-3"><i class="fa-solid fa-snowflake"></i></div>
-                            <div class="orbit-icon oi-4"><i class="fa-brands fa-git-alt"></i></div>
+                            <div class="orbit-icon oi-1"><i class="fa-brands fa-python" title="Python"></i></div>
+                            <div class="orbit-icon oi-2"><i class="fa-brands fa-aws" title="AWS"></i></div>
+                            <div class="orbit-icon oi-3"><i class="fa-regular fa-snowflake" title="Snowflake"></i></div>
+                            <div class="orbit-icon oi-4"><i class="fa-solid fa-layer-group" title="dbt"></i></div>
                         </div>
                         <div class="orbit orbit-2">
-                            <div class="orbit-icon" style="top: 0; left: 50%; margin-left: -24px; margin-top:-24px; color:#E34F26;"><i class="fa-brands fa-linux"></i></div>
-                            <div class="orbit-icon" style="bottom: 0; left: 50%; margin-left: -24px; margin-bottom:-24px; color:#2496ED;"><i class="fa-brands fa-docker"></i></div>
+                            <div class="orbit-icon" style="top: 0; left: 50%; margin-left: -24px; margin-top:-24px; color:#E34F26;"><i class="fa-brands fa-git-alt"></i></div>
+                            <div class="orbit-icon" style="bottom: 0; left: 50%; margin-left: -24px; margin-bottom:-24px; color:#2496ED;"><i class="fa-solid fa-chart-column"></i></div>
                         </div>
                     </div>
                 </div>
@@ -1674,8 +1680,8 @@
                         <div class="glow-card-inner">
                             <div class="glow-card-content">
                                 <i class="fa-solid fa-microchip glow-card-icon"></i>
-                                <h5>Data Processing</h5>
-                                <p>Python, SQL (Advanced Window Functions, CTEs), PySpark, Apache Spark.</p>
+                                <h5>Programming & Querying</h5>
+                                <p>Python, PySpark, Advanced SQL (CTEs, Window Functions), Pandas, Bash/Shell Scripting.</p>
                             </div>
                         </div>
                     </div>
@@ -1683,9 +1689,9 @@
                     <div class="glow-card reveal reveal-delay-1">
                         <div class="glow-card-inner">
                             <div class="glow-card-content">
-                                <i class="fa-solid fa-cloud glow-card-icon"></i>
-                                <h5>Cloud & Warehousing</h5>
-                                <p>AWS (S3, Redshift, EC2, Lambda, EventBridge), Snowflake, Dimensional Modeling, SCD.</p>
+                                <i class="fa-solid fa-sitemap glow-card-icon"></i>
+                                <h5>Data Engineering & Architecture</h5>
+                                <p>Medallion Architecture, Dimensional Modeling, Star Schema, Slowly Changing Dimensions (SCD Type 2), Data Quality Gates.</p>
                             </div>
                         </div>
                     </div>
@@ -1693,9 +1699,9 @@
                     <div class="glow-card reveal reveal-delay-2">
                         <div class="glow-card-inner">
                             <div class="glow-card-content">
-                                <i class="fa-solid fa-diagram-project glow-card-icon"></i>
-                                <h5>Orchestration</h5>
-                                <p>Apache Airflow, dbt (data build tool), modern ETL/ELT frameworks.</p>
+                                <i class="fa-brands fa-aws glow-card-icon"></i>
+                                <h5>Cloud & Warehousing</h5>
+                                <p>AWS (S3, Glue, Lambda, Step Functions, EventBridge, Kinesis, Athena, RDS, Redshift), Snowflake.</p>
                             </div>
                         </div>
                     </div>
@@ -1703,9 +1709,9 @@
                     <div class="glow-card reveal">
                         <div class="glow-card-inner">
                             <div class="glow-card-content">
-                                <i class="fa-solid fa-stream glow-card-icon"></i>
-                                <h5>Streaming & Ingestion</h5>
-                                <p>Apache Kafka, REST API Integrations, Change Data Capture (CDC).</p>
+                                <i class="fa-solid fa-layer-group glow-card-icon"></i>
+                                <h5>Transformation & Orchestration</h5>
+                                <p>dbt (data build tool), AWS Step Functions, Apache Airflow, Jinja Templating.</p>
                             </div>
                         </div>
                     </div>
@@ -1714,8 +1720,8 @@
                         <div class="glow-card-inner">
                             <div class="glow-card-content">
                                 <i class="fa-solid fa-gears glow-card-icon"></i>
-                                <h5>DevOps & Automation</h5>
-                                <p>Docker, Kubernetes, Terraform, Git, CI/CD pipelines (Jenkins).</p>
+                                <h5>DevOps & Tools</h5>
+                                <p>Git, Docker (Basics), Jenkins CI/CD, REST APIs, JIRA, Confluence.</p>
                             </div>
                         </div>
                     </div>
@@ -1725,7 +1731,7 @@
                             <div class="glow-card-content">
                                 <i class="fa-solid fa-shield-halved glow-card-icon"></i>
                                 <h5>Production Support</h5>
-                                <p>Incident Response, Root Cause Analysis, SLA Management, Performance Optimization.</p>
+                                <p>Incident Response, Root Cause Analysis, SLA/SLO Management, Data Quality Governance.</p>
                             </div>
                         </div>
                     </div>
@@ -1753,9 +1759,9 @@
                             <i class="fa-regular fa-building"></i> Accenture — Dublin, Ireland
                         </div>
                         <ul class="experience-details">
-                            <li>Investigated & resolved monetization and policy violation issues for Meta's global user base as part of a client engagement.</li>
-                            <li>Reviewed and actioned fake/fraudulent account activity using internal data and investigation tools.</li>
-                            <li>Collaborated with cross-functional global teams in an agile environment to meet SLA targets & improve process accuracy.</li>
+                            <li><strong>Policy Enforcement:</strong> Enforced strict platform policy compliance by reviewing high-volume user accounts and flagging fraudulent activity.</li>
+                            <li><strong>Global Escalation:</strong> Collaborated with global engineering, product, and operations teams to escalate complex technical tickets and resolve safety incidents.</li>
+                            <li><strong>Data Governance:</strong> Upheld governance standards by auditing metadata and documenting edge cases in JIRA/Confluence to support model tuning.</li>
                         </ul>
                     </div>
                 </div>
@@ -1771,9 +1777,10 @@
                             <i class="fa-regular fa-building"></i> VTRANS India Ltd — Bangalore, India
                         </div>
                         <ul class="experience-details">
-                            <li>Engineered scalable backend data ingestion systems using Python, optimizing extraction of 50+ GB daily logistics data and <span class="impact-tag">−40% processing time</span> while minimizing AWS compute costs.</li>
-                            <li>Orchestrated complex data dependencies by automating 15+ manual workflows, achieving <span class="impact-tag">99.9% pipeline SLA</span> and faster data delivery to stakeholders.</li>
-                            <li>Designed modular, fault-tolerant ELT architectures for log & event data with robust error handling and monitoring to accelerate incident resolution.</li>
+                            <li>Engineered scalable backend ETL/ELT data ingestion pipelines using Python, optimizing the extraction of 50+ GB of daily logistics data and reducing processing time by <span class="impact-tag">40%</span>.</li>
+                            <li>Designed relational and dimensional data models to structure raw event data, maintaining a <span class="impact-tag">99.9% SLA</span> across 15+ automated workflows.</li>
+                            <li>Architected fault-tolerant processing systems with automated error handling, decreasing operational incident resolution time by 25%.</li>
+                            <li>Managed deployment scripts using Git, enforcing software engineering best practices.</li>
                         </ul>
                     </div>
                 </div>
@@ -1789,9 +1796,9 @@
                             <i class="fa-regular fa-building"></i> Transtech Logistics Pvt Ltd — Bangalore, India
                         </div>
                         <ul class="experience-details">
-                            <li>Optimized complex MySQL analytical queries and implemented caching strategies, improving REST API response times by <span class="impact-tag">25%</span> for reporting dashboards.</li>
-                            <li>Developed and maintained Python-based ETL pipelines to process raw logistics data, ensuring high data quality and freshness for analytics teams.</li>
-                            <li>Collaborated across the full development lifecycle—design, testing, CI/CD deployment, and infrastructure monitoring—to ensure highly available logistics services.</li>
+                            <li>Developed and maintained Python-based ETL pipelines versioned in Git to ingest and transform raw logistics data, ensuring data freshness.</li>
+                            <li>Refactored relational database models and optimized complex MySQL analytical queries with caching strategies, improving REST API response times by <span class="impact-tag">25%</span>.</li>
+                            <li>Collaborated across the full development lifecycle to deploy and monitor highly available backend data services.</li>
                         </ul>
                     </div>
                 </div>
@@ -1807,8 +1814,8 @@
                             <i class="fa-regular fa-building"></i> Transtech Logistics Pvt Ltd — Bangalore, India
                         </div>
                         <ul class="experience-details">
-                            <li>Built core backend features & REST APIs using Python and MySQL, directly supporting high-traffic logistics applications.</li>
-                            <li>Assisted in the deployment & debugging of production systems under senior engineering guidance.</li>
+                            <li>Built core backend data components, database schemas, and REST APIs using Python and MySQL to support high-traffic logistics applications.</li>
+                            <li>Assisted senior engineers in deploying and debugging production ETL workflows and database migration scripts via Git.</li>
                         </ul>
                     </div>
                 </div>
@@ -1827,20 +1834,21 @@
                 <div class="project-card reveal">
                     <div>
                         <div class="project-header">
-                            <i class="fa-solid fa-chart-line"></i>
+                            <i class="fa-brands fa-youtube"></i>
                         </div>
-                        <h3>Financial Forecasting Framework</h3>
-                        <span class="project-tag">Sep 2024 – Jan 2025</span>
+                        <h3>YouTube Trending Data Pipeline</h3>
+                        <span class="project-tag">Mar 2026 – Apr 2026</span>
                         <div class="tech-tags">
                             <span>Python</span>
-                            <span>Temporal Fusion Transformers</span>
-                            <span>FinBERT</span>
-                            <span>APIs</span>
+                            <span>PySpark</span>
+                            <span class="aws-tag">AWS Glue</span>
+                            <span class="aws-tag">AWS Step Functions</span>
+                            <span class="aws-tag">Amazon Athena</span>
                         </div>
-                        <p>Built a real-time financial forecasting web application using Temporal Fusion Transformers (TFT) and Python. Integrated FinBERT for sentiment analysis of Reddit & financial news, improving prediction accuracy by 15%. Engineered an automated data ingestion pipeline for historical stock data and Reddit streams with strong quality controls for model training.</p>
+                        <p>Designed a cloud-native ETL pipeline ingesting live YouTube API v3 and Kaggle datasets across 10 regions, structured in a Medallion Architecture (Bronze &rarr; Silver &rarr; Gold). Orchestrated parallel PySpark transformations using AWS Step Functions. Built a Python Data Quality gate Lambda enforcing schema checks before writing Snappy-compressed Parquet files to S3, exposed for querying via Athena.</p>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/saiharsha-14/MScResearchProject" target="_blank" rel="noopener" class="btn-github-project">
+                        <a href="https://github.com/saiharsha-14" target="_blank" rel="noopener" class="btn-github-project">
                             <i class="fa-brands fa-github"></i> Source Code
                         </a>
                     </div>
@@ -1849,18 +1857,18 @@
                 <div class="project-card reveal reveal-delay-1">
                     <div>
                         <div class="project-header">
-                            <i class="fa-solid fa-cubes"></i>
+                            <i class="fa-solid fa-house-laptop"></i>
                         </div>
-                        <h3>End-to-End E-Commerce Data Platform</h3>
-                        <span class="project-tag">Jun 2026</span>
+                        <h3>Airbnb Data Warehouse Platform</h3>
+                        <span class="project-tag">Jun 2026 – Jul 2026</span>
                         <div class="tech-tags">
-                            <span>AWS</span>
-                            <span>Snowflake</span>
-                            <span>Terraform</span>
-                            <span>Airflow</span>
-                            <span>Great Expectations</span>
+                            <span class="snow-tag">Snowflake</span>
+                            <span class="dbt-tag">dbt</span>
+                            <span>SQL</span>
+                            <span>Python</span>
+                            <span class="aws-tag">AWS S3</span>
                         </div>
-                        <p>Engineered an automated batch ETL pipeline fully deployed via Infrastructure as Code (Terraform) on AWS, extracting daily transaction data from distributed PostgreSQL databases. Modeled a scalable Snowflake warehouse using Star Schema for BI reporting. Implemented data contracts and quality checks with Great Expectations inside Airflow DAGs, with Slack alerts on schema drift.</p>
+                        <p>Built an end-to-end cloud data warehouse in Snowflake using dbt to ingest and transform Airbnb listings, bookings, and host data staged from Amazon S3. Developed dbt models across layers, implementing dbt Snapshots to track Slowly Changing Dimensions (SCD Type 2). Leveraged incremental materializations and custom Jinja macros to build a denormalized One Big Table (OBT).</p>
                     </div>
                     <div class="project-links">
                         <a href="https://github.com/saiharsha-14" target="_blank" rel="noopener" class="btn-github-project">
@@ -1910,7 +1918,7 @@
                         <i class="fa-solid fa-graduation-cap"></i> National College of Ireland — Dublin, Ireland
                     </div>
                     <ul class="experience-details">
-                        <li><strong>Core Modules:</strong> Predictive Analytics, Data Engineering, Machine Learning, Statistics, Cloud Platforms.</li>
+                        <li><strong>Core Modules:</strong> Apache Spark, Big Data Processing, Snowflake, Data Modeling, Data Engineering, AWS, Apache Airflow.</li>
                     </ul>
                 </div>
             </div>
@@ -1924,6 +1932,9 @@
                     <div class="experience-company">
                         <i class="fa-solid fa-graduation-cap"></i> IIIT Dharwad — Dharwad, India
                     </div>
+                    <ul class="experience-details">
+                        <li><strong>Coursework:</strong> Programming in Python, MySQL, Database Systems, Query Optimization Techniques.</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -1935,7 +1946,7 @@
         <div class="contact-content">
             <div class="contact-card reveal">
                 <h3 class="contact-title">Let's Connect</h3>
-                <p class="contact-subtitle">Open to Data Engineering, Analytics Engineering & related roles.</p>
+                <p class="contact-subtitle">Open to Data Engineering, Cloud Infrastructure & related roles.</p>
                 <div class="contact-details">
                     <div class="contact-item">
                         <i class="fa-solid fa-envelope"></i>
@@ -1943,7 +1954,7 @@
                     </div>
                     <div class="contact-item">
                         <i class="fa-solid fa-phone"></i>
-                        <span>+91 9381081681</span>
+                        <a href="tel:+919381081681">+91 9381081681</a>
                     </div>
                     <div class="contact-item">
                         <i class="fa-solid fa-location-dot"></i>
@@ -2158,21 +2169,39 @@
             });
         }
 
-        // ========== PARTICLES ==========
+        // ========== BACKGROUND ICONS ==========
         const particleHost = document.getElementById('particle-host');
         if (particleHost) {
-            const particleCount = 35;
+            // Array of Font Awesome icon classes to display in the background
+            const iconClasses = [
+                'fa-brands fa-aws',
+                'fa-solid fa-database',
+                'fa-solid fa-network-wired',
+                'fa-solid fa-laptop-code',
+                'fa-brands fa-python',
+                'fa-solid fa-server',
+                'fa-solid fa-cloud',
+                'fa-brands fa-docker',
+                'fa-solid fa-diagram-project'
+            ];
+            
+            const particleCount = 28;
             for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                const size = Math.random() * 3.5 + 1;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                particle.style.animationDuration = `${Math.random() * 14 + 16}s`;
-                particle.style.animationDelay = `${Math.random() * -28}s`;
-                particleHost.appendChild(particle);
+                const icon = document.createElement('i');
+                
+                const randomIcon = iconClasses[Math.floor(Math.random() * iconClasses.length)];
+                icon.className = `bg-icon ${randomIcon}`;
+                
+                const size = Math.random() * 1.5 + 1; // Size between 1rem and 2.5rem
+                icon.style.fontSize = `${size}rem`;
+                
+                icon.style.left = `${Math.random() * 100}%`;
+                icon.style.top = `${Math.random() * 100}%`;
+                
+                icon.style.animationDuration = `${Math.random() * 20 + 25}s`;
+                icon.style.animationDelay = `${Math.random() * -40}s`;
+                
+                particleHost.appendChild(icon);
             }
         }
 
