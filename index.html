@@ -1116,7 +1116,7 @@
             margin-left: 4px;
         }
 
-        /* ========== PROJECTS ========== */
+        /* ========== PROJECTS (3D FLIP CARDS) ========== */
         .projects-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -1125,20 +1125,48 @@
         @media (min-width: 900px) {
             .projects-grid { grid-template-columns: repeat(2, 1fr); }
         }
+        
         .project-card {
+            perspective: 1200px;
+            background: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+            min-height: 520px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .project-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-style: preserve-3d;
+        }
+
+        .project-card.flipped .project-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .project-card-front, .project-card-back {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 18px;
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 18px;
             padding: 2.3rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: all 0.45s var(--ease-out-expo);
-            position: relative;
             overflow: hidden;
-            z-index: 1;
+            transition: border-color 0.4s, box-shadow 0.4s;
         }
-        .project-card::before {
+
+        .project-card-front::before {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -1147,33 +1175,72 @@
             opacity: 0;
             transition: opacity 0.45s;
         }
-        .project-card::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 3px;
-            background: linear-gradient(to right, var(--primary-glow), var(--secondary-glow), var(--accent-purple));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s var(--ease-out-expo);
-        }
-        .project-card:hover {
-            transform: translateY(-12px);
+
+        .project-card:hover .project-card-front {
             border-color: var(--border-hover);
             box-shadow: 0 20px 48px rgba(0,0,0,0.32);
         }
-        .project-card:hover::before { opacity: 1; }
-        .project-card:hover::after { transform: scaleX(1); }
+        .project-card:hover .project-card-front::before { opacity: 1; }
+
+        .project-card-back {
+            transform: rotateY(180deg);
+            background: rgba(10, 15, 26, 0.96);
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 35px rgba(0, 242, 254, 0.15);
+            padding: 1.8rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .flip-btn-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--primary-glow);
+            background: rgba(0, 242, 254, 0.08);
+            border: 1px solid rgba(0, 242, 254, 0.25);
+            padding: 5px 12px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover .flip-btn-badge {
+            background: rgba(0, 242, 254, 0.2);
+            box-shadow: 0 0 12px rgba(0, 242, 254, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .arch-img-wrapper {
+            width: 100%;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border-color);
+            margin: 1rem 0;
+            padding: 0.5rem;
+        }
+
+        .arch-img-wrapper img {
+            max-width: 100%;
+            max-height: 350px;
+            object-fit: contain;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
         .project-header i {
             font-size: 2.3rem;
             color: var(--primary-glow);
-            margin-bottom: 1.3rem;
             transition: transform 0.45s var(--ease-spring);
             display: inline-block;
         }
-        .project-card:hover .project-header i { 
-            transform: scale(1.12) translateY(-4px); 
-            filter: drop-shadow(0 0 12px rgba(0,242,254,0.4));
-        }
+        
         .project-card h3 {
             color: var(--text-main);
             font-size: 1.35rem;
@@ -1209,10 +1276,6 @@
             color: var(--text-muted);
             border: 1px solid rgba(255,255,255,0.04);
             transition: all 0.25s;
-        }
-        .project-card:hover .tech-tags span {
-            border-color: rgba(0, 242, 254, 0.2);
-            color: #b8c5d4;
         }
         .tech-tags span.aws-tag { color: #FF9900; border-color: rgba(255,153,0,0.3); background: rgba(255,153,0,0.05); }
         .tech-tags span.dbt-tag { color: #FF694B; border-color: rgba(255,105,75,0.3); background: rgba(255,105,75,0.05); }
@@ -1531,8 +1594,8 @@
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link active">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
                 <li><a href="#portfolio" class="nav-link">Projects</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
             <div class="nav-actions">
@@ -1551,8 +1614,8 @@
     <div class="mobile-menu" id="mobileMenu">
         <a href="#home"><i class="fa-solid fa-house"></i> Home</a>
         <a href="#about"><i class="fa-solid fa-user"></i> About</a>
-        <a href="#experience"><i class="fa-solid fa-briefcase"></i> Experience</a>
         <a href="#portfolio"><i class="fa-solid fa-code"></i> Projects</a>
+        <a href="#experience"><i class="fa-solid fa-briefcase"></i> Experience</a>
         <a href="#achievements"><i class="fa-solid fa-trophy"></i> Achievements</a>
         <a href="#education"><i class="fa-solid fa-graduation-cap"></i> Education</a>
         <a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a>
@@ -1741,6 +1804,99 @@
         </div>
     </section>
 
+    <!-- Projects Section (with 3D Flip Effects) -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title reveal">Projects</h2>
+            
+            <div class="projects-grid">
+                
+                <!-- Project 1: E-Commerce ETL Pipeline -->
+                <div class="project-card reveal" onclick="this.classList.toggle('flipped')">
+                    <div class="project-card-inner">
+                        <!-- Front Face -->
+                        <div class="project-card-front">
+                            <div>
+                                <div class="project-header" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                    <span class="flip-btn-badge"><i class="fa-solid fa-rotate"></i> Flip for Architecture</span>
+                                </div>
+                                <h3>Scalable E-Commerce ETL Pipeline</h3>
+                                <span class="project-tag">Recent Project</span>
+                                <div class="tech-tags">
+                                    <span>Python</span>
+                                    <span>PySpark</span>
+                                    <span class="snow-tag">Snowflake</span>
+                                    <span class="aws-tag">AWS S3</span>
+                                    <span class="dbt-tag">Apache Airflow</span>
+                                </div>
+                                <p>Engineered an automated batch-processing pipeline handling simulated daily transaction records for an e-commerce platform. Extracted raw logs into an AWS S3 data lake, transformed unstructured JSON into relational formats using PySpark, and orchestrated daily loads into Snowflake using Apache Airflow.</p>
+                            </div>
+                            <div class="project-links" onclick="event.stopPropagation()">
+                                <a href="https://github.com/saiharsha-14/ecommerce-data-platform" target="_blank" rel="noopener" class="btn-github-project">
+                                    <i class="fa-brands fa-github"></i> Source Code
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Back Face (Architecture Image) -->
+                        <div class="project-card-back">
+                            <div style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+                                <h4 style="color: var(--text-main); font-size: 1.1rem; font-weight: 700;"><i class="fa-solid fa-sitemap" style="color: var(--primary-glow); margin-right: 8px;"></i> E-Commerce Architecture</h4>
+                                <span class="flip-btn-badge"><i class="fa-solid fa-rotate-left"></i> Flip Back</span>
+                            </div>
+                            <div class="arch-img-wrapper">
+                                <img src="architecture.png" alt="E-Commerce Data Pipeline Architecture">
+                            </div>
+                            <p style="font-size: 0.78rem; color: var(--text-muted); text-align: center; margin-bottom: 0;">Click anywhere to flip back</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Airbnb Data Warehouse Platform -->
+                <div class="project-card reveal reveal-delay-1" onclick="this.classList.toggle('flipped')">
+                    <div class="project-card-inner">
+                        <!-- Front Face -->
+                        <div class="project-card-front">
+                            <div>
+                                <div class="project-header" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                                    <i class="fa-solid fa-house-laptop"></i>
+                                    <span class="flip-btn-badge"><i class="fa-solid fa-rotate"></i> Flip for Architecture</span>
+                                </div>
+                                <h3>Airbnb Data Warehouse Platform</h3>
+                                <span class="project-tag">Jun 2026 – Jul 2026</span>
+                                <div class="tech-tags">
+                                    <span class="snow-tag">Snowflake</span>
+                                    <span class="dbt-tag">dbt</span>
+                                    <span>SQL</span>
+                                    <span>Python</span>
+                                    <span class="aws-tag">AWS S3</span>
+                                </div>
+                                <p>Built an end-to-end cloud data warehouse in Snowflake using dbt to ingest and transform Airbnb listings, bookings, and host data staged from Amazon S3. Developed dbt models across layers, implementing dbt Snapshots to track Slowly Changing Dimensions (SCD Type 2). Leveraged incremental materializations and custom Jinja macros to build a denormalized One Big Table (OBT).</p>
+                            </div>
+                            <div class="project-links" onclick="event.stopPropagation()">
+                                <a href="https://github.com/saiharsha-14/Airbnb-Snowflake-DBT-Data-Pipeline" target="_blank" rel="noopener" class="btn-github-project">
+                                    <i class="fa-brands fa-github"></i> Source Code
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Back Face (Architecture Image) -->
+                        <div class="project-card-back">
+                            <div style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+                                <h4 style="color: var(--text-main); font-size: 1.1rem; font-weight: 700;"><i class="fa-solid fa-sitemap" style="color: var(--primary-glow); margin-right: 8px;"></i> Airbnb Architecture</h4>
+                                <span class="flip-btn-badge"><i class="fa-solid fa-rotate-left"></i> Flip Back</span>
+                            </div>
+                            <div class="arch-img-wrapper">
+                                <img src="architecture.jpeg" alt="Airbnb Data Warehouse Architecture">
+                            </div>
+                            <p style="font-size: 0.78rem; color: var(--text-muted); text-align: center; margin-bottom: 0;">Click anywhere to flip back</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- Experience Section -->
     <section id="experience" class="experience">
         <div class="container">
@@ -1817,63 +1973,6 @@
                             <li>Built core backend data components, database schemas, and REST APIs using Python and MySQL to support high-traffic logistics applications.</li>
                             <li>Assisted senior engineers in deploying and debugging production ETL workflows and database migration scripts via Git.</li>
                         </ul>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-            <h2 class="section-title reveal">Projects</h2>
-            
-            <div class="projects-grid">
-                
-                <div class="project-card reveal">
-                    <div>
-                        <div class="project-header">
-                            <i class="fa-brands fa-youtube"></i>
-                        </div>
-                        <h3>YouTube Trending Data Pipeline</h3>
-                        <span class="project-tag">Mar 2026 – Apr 2026</span>
-                        <div class="tech-tags">
-                            <span>Python</span>
-                            <span>PySpark</span>
-                            <span class="aws-tag">AWS Glue</span>
-                            <span class="aws-tag">AWS Step Functions</span>
-                            <span class="aws-tag">Amazon Athena</span>
-                        </div>
-                        <p>Designed a cloud-native ETL pipeline ingesting live YouTube API v3 and Kaggle datasets across 10 regions, structured in a Medallion Architecture (Bronze &rarr; Silver &rarr; Gold). Orchestrated parallel PySpark transformations using AWS Step Functions. Built a Python Data Quality gate Lambda enforcing schema checks before writing Snappy-compressed Parquet files to S3, exposed for querying via Athena.</p>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/saiharsha-14" target="_blank" rel="noopener" class="btn-github-project">
-                            <i class="fa-brands fa-github"></i> Source Code
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card reveal reveal-delay-1">
-                    <div>
-                        <div class="project-header">
-                            <i class="fa-solid fa-house-laptop"></i>
-                        </div>
-                        <h3>Airbnb Data Warehouse Platform</h3>
-                        <span class="project-tag">Jun 2026 – Jul 2026</span>
-                        <div class="tech-tags">
-                            <span class="snow-tag">Snowflake</span>
-                            <span class="dbt-tag">dbt</span>
-                            <span>SQL</span>
-                            <span>Python</span>
-                            <span class="aws-tag">AWS S3</span>
-                        </div>
-                        <p>Built an end-to-end cloud data warehouse in Snowflake using dbt to ingest and transform Airbnb listings, bookings, and host data staged from Amazon S3. Developed dbt models across layers, implementing dbt Snapshots to track Slowly Changing Dimensions (SCD Type 2). Leveraged incremental materializations and custom Jinja macros to build a denormalized One Big Table (OBT).</p>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/saiharsha-14/Airbnb-Snowflake-DBT-Data-Pipeline" target="_blank" rel="noopener" class="btn-github-project">
-                            <i class="fa-brands fa-github"></i> Source Code
-                        </a>
                     </div>
                 </div>
 
@@ -2172,7 +2271,6 @@
         // ========== BACKGROUND ICONS ==========
         const particleHost = document.getElementById('particle-host');
         if (particleHost) {
-            // Array of Font Awesome icon classes to display in the background
             const iconClasses = [
                 'fa-brands fa-aws',
                 'fa-solid fa-database',
@@ -2192,7 +2290,7 @@
                 const randomIcon = iconClasses[Math.floor(Math.random() * iconClasses.length)];
                 icon.className = `bg-icon ${randomIcon}`;
                 
-                const size = Math.random() * 1.5 + 1; // Size between 1rem and 2.5rem
+                const size = Math.random() * 1.5 + 1;
                 icon.style.fontSize = `${size}rem`;
                 
                 icon.style.left = `${Math.random() * 100}%`;
